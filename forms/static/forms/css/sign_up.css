@@ -1,0 +1,86 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	padding: 0 !important;
+}
+
+h2 {
+	color: hsl(0, 0%, 75%);
+}
+
+h3 {
+	display: flex;
+    width: 100%;
+	align-items: center;
+	color: hsl(0, 0%, 15%) !important;
+}
+
+h3:before,
+h3:after {
+	content: '';
+    border-top: 1px solid;
+    margin: 0 10px 0 10px;
+    flex: 1 0 10px;
+}
+
+small {
+	color: hsl(0, 0%, 65%);
+}
+
+hr {
+	margin: 34px auto;
+}
+
+label {
+	color: hsl(0, 0%, 22%);
+}
+
+button {
+	margin-top: 30px;
+	color: white;
+	border: none;
+	box-shadow: 2px 2px hsl(205, 50%, 30%);
+	background: hsl(205, 40%, 50%);
+	border-radius: 0 !important;
+}
+
+button:active {
+	box-shadow: none !important;
+	border: none !important;
+}
+
+.form {
+	background: hsla(0, 0%, 97%, 0.85);
+	margin: 0;
+	box-shadow: -5px 0 2px hsla(210, 250%, 25%, 0.5);
+}
+
+.lt {
+	font-size: 16px;
+}
+
+.form-control {
+	border-radius: 0;
+	border: none;
+	background: hsla(0, 0%, 0%, 0);
+	box-shadow: 0 1px hsla(210, 40%, 50%, 0.5);
+	color: hsl(0, 0%, 50%);
+}
+
+.form-control:focus, .is-valid:focus {
+	box-shadow: 0 0 2px 2px hsla(220, 50%, 50%, 0.8) !important;
+	background: rgba(255, 255, 255, 0.4);
+	color: black;
+}
+
+.is-invalid {
+	box-shadow: 0 2px hsla(0, 40%, 50%, 0.7);
+}
+
+.is-invalid:focus {
+	box-shadow: 0 0 2px 2px hsla(0, 50%, 50%, 0.8) !important;
+}
+
+.bold {
+	font-weight: bold;
+}

@@ -1,0 +1,92 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+h4 {
+	color: hsl(0, 0%, 90%);
+	margin-top: 10px;
+}
+
+small {
+	font-weight: 600px !important;
+	color: hsl(0, 0%, 65%);
+} 
+		
+label {
+	margin-bottom: 2px;
+	color: white;
+	box-shadow: none !important;
+}
+		
+button {
+	background: hsla(19, 65%, 55%);
+	margin-top: 5px;
+	color: white;
+}
+
+button:active, button:focus {
+	box-shadow:0 0 2px 2px hsla(19, 59%, 43%, 0.69) !important;
+}
+		
+.overlay {
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	position: fixed;
+	background: hsla(0, 0%, 0%, 0.35);
+}
+
+.card, .card-body {
+	border-radius: 1px;
+	border: none;
+	background: hsla(0, 0%, 0%, 0);
+}
+
+.card-body {
+	background: hsla(0, 0%, 15%, 0.5);
+	padding: 20px;
+	box-shadow: -7px -7px 1px hsla(19, 77%, 55%, 0.69);
+}
+
+.form-control {
+	border-radius: 0;
+	border: none;
+	background: hsl(0, 0%, 85%);
+	box-shadow: 1px 2px hsla(19, 57%, 45%, 0.69);
+}
+
+.is-invalid {
+	box-shadow: 1px 2px hsla(0, 57%, 45%, 0.69);
+}
+
+.is-valid {
+	box-shadow: 1px 2px hsla(120, 57%, 45%, 0.69);
+}
+
+.form-control:focus {
+	box-shadow: inset 0 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(240, 121, 24, 0.6); box-shadow: inset 0 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(240, 121, 24, 0.6) !important;
+}
+		
+.invalid-feedback {
+	color: hsl(25, 40%, 55%);
+}
+		
+p.form-footer {
+	font-size: 12px;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+hr.form-footer {
+	margin: 0;
+}

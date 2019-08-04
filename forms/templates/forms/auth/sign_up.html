@@ -1,0 +1,71 @@
+{% extends "forms/base.html" %}
+{% load static widget_tweaks form_tags %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'forms/css/sign_up.css' %}">
+	<style>
+
+		body {
+			background: url({% static "forms/img/social_media_background.jpg" %});
+			background-size: cover;
+			background-attachment: center;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+	</style>
+{% endblock styles %}
+
+{% block container %}
+	<div class="row justify-content-around align-items-center h-100" style="padding:0;">
+		<div id="message" class="col-7 h-100">
+			<div class="row align-items-center h-100">
+				<div class="col-12">
+					<h2 class="text-center">Join our community for 
+						<span class="bold">free</span>
+					</h2>
+					<small class="text-center d-block">...and share with people around the world!</small>
+				</div>
+			</div>
+		</div>
+		<div class="col-5 form h-100">
+			<div class="row align-items-center h-100">
+				<div class="col-12">
+					<h3 class="text-center">Join now</h3>
+					<br>
+					<form method="POST" novalidate autocomplete="off">
+						{% csrf_token %}
+						{% include "forms/includes/form.html" %}
+						<div class="row justify-content-center">
+							<button class="col-6 btn" type="submit">Join</button>
+						</div>
+						<hr>
+						<div class="text-center">
+							{% for field in form %}
+							    {% for error in field.errors %}
+							    	<div class="invalid-feedback d-block">
+							    		{% if error == "This field is required." %}
+							    		    The 
+							    		    {% if field.name == "password1" %}
+							    		        password
+											{% elif field.name == "password2" %}
+												password confirmation
+											{% else %}
+												{{ field.name }}	    
+							    		    {% endif %}
+							    		     field is required.
+							    		{% else %}
+							    		    {{ error }}
+							    		{% endif %}
+							    	</div>
+							    {% endfor %}
+							{% endfor %}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock container %}

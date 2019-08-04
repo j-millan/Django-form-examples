@@ -1,0 +1,82 @@
+{% extends "forms/base.html" %}
+{% load static widget_tweaks form_tags %}
+
+{% block title %}Create a car{% endblock title %}
+
+{% block styles %}
+	<style>
+
+		html, body {
+			width: 100%;
+		}
+				
+		.cb {
+			margin-right: 20px;
+		}
+
+		.btn {
+			width: 100% !important;
+		}
+
+	</style>
+{% endblock styles %}
+
+{% block container %}
+	<div class="row justify-content-center">
+		<div class="col-7">
+			<br>
+			<h2 class="text-center">Create a car</h2>
+			<hr>
+			<form method="POST" novalidate>
+				{% csrf_token %}
+				<div class="row justify-content-around">
+					<div class="col-5">
+						<div class="form-group">
+							{{ form.brand.label_tag }}
+							{% render_field form.brand class=form.brand|input_class %}
+							{% for error in form.brand.errors %}
+								<div class="invalid-feedback d-block">{{ error }}</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="col-5">
+						<div class="form-group">
+							{{ form.color.label_tag }}
+							{% render_field form.color class=form.color|input_class %}
+							{% for error in form.color.errors %}
+								<div class="invalid-feedback d-block">{{ error }}</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-11">
+						<div class="form-group">
+							{{ form.fuel_capacity.label_tag }}
+							{% render_field form.fuel_capacity class=form.fuel_capacity|input_class %}
+							{% for error in form.fuel_capacity.errors %}
+								<div class="invalid-feedback d-block">{{ error }}</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-11">
+						<div class="form-group">
+							<p>Extras:</p>
+							{% render_field form.dark_windows %}
+							<label for="{{ form.dark_windows.name }}" class="cb">{{ form.dark_windows.label_tag }}</label>
+							{% render_field form.leather_seats %}
+							<label for="{{ form.leather_seats.name }}" class="cb">{{ form.leather_seats.label_tag }}</label>
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-6">
+						<button type="submit" class="btn btn-md btn-primary">Create car</button>
+					</div>
+				</div>	
+			</form>
+		</div>
+	</div>
+{% endblock container %}	

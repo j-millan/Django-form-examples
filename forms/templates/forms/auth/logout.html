@@ -1,0 +1,25 @@
+{% extends "forms/base.html" %}
+
+{% block title %}Logout{% endblock title %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'forms/css/login.css' %}">
+    <style>
+        p {
+            color: hsl(0, 0%, 80%);
+            margin: 10px 30px;
+            font-weight: 500;
+        }
+    </style>
+{% endblock styles  %}
+
+{% block container %}
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-5 card">
+            <div class="card-body">
+                <p class="text-center">You are now logged out.</p>
+            </div>
+        </div>
+    </div>
+{% endblock container %}

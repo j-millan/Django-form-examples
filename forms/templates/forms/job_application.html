@@ -1,0 +1,62 @@
+{% extends "forms/base.html" %}
+{% load static widget_tweaks form_tags%}
+
+{% block title %}Join our community{% endblock title %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'forms/css/job_app_styles.css' %}">
+	<style>body{background: url({% static "forms/img/city_background_hd.jpg" %});}</style>
+{% endblock styles %}
+
+{% block container %}
+	<div class="row h-100 align-items-center justify-content-center">
+		<div class="col-lg-5 col-md-7 col-sm-7">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="text-center">Apply for a position with us</h4>
+					<small class="text-center d-block">... we just need a bit of information about you.</small>
+					<hr>
+					<form method="POST" novalidate>
+						{% csrf_token %}
+						<div class="row justify-content-around">		
+							<div class="col-6 form-group">
+								<label for="{{ form.name.name }}">{{ form.name.label_tag }}</label>
+								{% render_field form.name class=form.name|input_class%}
+							</div>
+							<div class="col-6 form-group">
+								<label for="{{ form.last_name.name }}">{{ form.last_name.label_tag }}</label>
+								{% render_field form.last_name class=form.last_name|input_class%}
+							</div>
+						</div>
+						<div class="row justify-content-around">
+							<div class="col-6 form-group">
+								<label for="{{ form.birth_date.name }}">{{ form.birth_date.label_tag }}</label>
+								{% render_field form.birth_date class=form.birth_date|input_class%}
+							</div>
+							<div class="col-6 form-group">
+								<div class="row justify-content-center">
+									<div class="col-12 align-self-start">
+										<label for="{{ form.country.name }}">{{ form.country.label_tag }}</label>
+										{% render_field form.country class=form.country|input_class %}
+									</div>
+									<div class="col-12 align-self-end">
+										<label for="{{ form.phone_number.name }}">{{ form.phone_number.label_tag }}</label>
+										{% render_field form.phone_number class=form.phone_number|input_class %}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-center">
+							<button type="submit" class="col-5 btn btn-md mx-auto">let's go</button>
+						</div>
+					</form>
+					<p class="text-muted w-100 text-center form-footer">
+						We will contact you within the next 48 hours.
+					</p>
+					<hr class="form-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overlay">
+{% endblock container %}
