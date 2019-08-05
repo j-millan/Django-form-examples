@@ -40,20 +40,7 @@
 							{% for field in form %}
 							    {% for error in field.errors %}
 							    	<div class="invalid-feedback d-block">
-                                        {% password_error error field %}
-							    		<!--{% if error == "This field is required." %}
-							    		    The
-							    		    {% if field.name == "password1" %}
-							    		        password
-											{% elif field.name == "password2" %}
-												password confirmation
-											{% else %}
-												{{ field.name }}
-							    		    {% endif %}
-							    		     field is required.
-							    		{% else %}
-							    		    {{ error }}
-							    		{% endif %}-->
+                                        {% form_error error field %}
 							    	</div>
 							    {% endfor %}
 							{% endfor %}
