@@ -5,17 +5,6 @@
 
 {% block styles %}
 	<link rel="stylesheet" href="{% static 'forms/css/sign_up.css' %}">
-	<style>
-
-		body {
-			background: url({% static "forms/img/social_media_background.jpg" %});
-			background-size: cover;
-			background-attachment: center;
-			background-position: center;
-			background-repeat: no-repeat;
-		}
-
-	</style>
 {% endblock styles %}
 
 {% block container %}
@@ -43,22 +32,28 @@
 						</div>
 						<hr>
 						<div class="text-center">
+                            {% for error in form.non_field_errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
 							{% for field in form %}
 							    {% for error in field.errors %}
 							    	<div class="invalid-feedback d-block">
-							    		{% if error == "This field is required." %}
-							    		    The 
+                                        {% password_error error field %}
+							    		<!--{% if error == "This field is required." %}
+							    		    The
 							    		    {% if field.name == "password1" %}
 							    		        password
 											{% elif field.name == "password2" %}
 												password confirmation
 											{% else %}
-												{{ field.name }}	    
+												{{ field.name }}
 							    		    {% endif %}
 							    		     field is required.
 							    		{% else %}
 							    		    {{ error }}
-							    		{% endif %}
+							    		{% endif %}-->
 							    	</div>
 							    {% endfor %}
 							{% endfor %}

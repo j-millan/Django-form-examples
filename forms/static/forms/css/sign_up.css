@@ -4,6 +4,15 @@ html, body {
 	padding: 0 !important;
 }
 
+body {
+	background: url(../img/social_media_background.jpg);
+	background-size: cover;
+	background-attachment: center;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
 h2 {
 	color: hsl(0, 0%, 75%);
 }
