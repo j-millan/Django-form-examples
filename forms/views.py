@@ -1,15 +1,18 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib.auth.models import User
 from django.contrib.auth import login
 from .forms import CarForm, JobApplicationForm, SignUpForm
-from .models import Car, JobApplication
+
 
 def user_home(request):
-	return render(request, 'forms/auth/user_home.html')
+	return render(request, 'forms/auth/logout_request.html')
+
+def logout_request(request):
+	if request.user.is_authenticated:
+		return render(request, 'forms/auth/logout_request.html')
+	else:
+		return  redirect('forms:login')
 
 def sign_up(request):
-	form = None
 	if request.method == "POST":
 		form = SignUpForm(request.POST)
 		if form.is_valid():
@@ -18,12 +21,14 @@ def sign_up(request):
 			return redirect('forms:user_home')
 
 	else:
+		if request.user.is_authenticated:
+			return redirect('forms:logout_request')
+
 		form = SignUpForm()
 
 	return render(request, 'forms/auth/sign_up.html', {'form' : form})
 
 def job_application(request):
-	form = None
 	if request.method == "POST":
 		form = JobApplicationForm(request.POST)
 		if form.is_valid():
@@ -36,7 +41,6 @@ def job_application(request):
 	return render(request, 'forms/job_application.html', {'form' : form})
 
 def new_car(request):
-	form = None
 	if request.method == "POST":
 		form = CarForm(request.POST)
 		if form.is_valid():
@@ -47,3 +51,6 @@ def new_car(request):
 		form = CarForm()
 
 	return render(request, 'forms/new_car.html', {'form' : form})
+
+def protector_registration(request):
+	pass

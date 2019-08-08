@@ -1,0 +1,21 @@
+body, html {
+    height: 100%;
+    padding: 0;
+}
+
+body {
+    background: hsl(210, 65%, 25%);
+}
+
+.card , .card-body {
+    border-radius: 5px;
+    border: none;
+    background: hsla(0, 0%, 0%, 0);
+}
+
+.card-body {
+    background: hsl(0, 0%, 85%);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-shadow: 5px 5px 3px hsla(0, 0%, 15%, 0.5);
+}

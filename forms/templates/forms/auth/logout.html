@@ -4,22 +4,13 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'forms/css/login.css' %}">
-    <style>
-        p {
-            color: hsl(0, 0%, 80%);
-            margin: 10px 30px;
-            font-weight: 500;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'forms/css/logout.css' %}">
 {% endblock styles  %}
 
 {% block container %}
     <div class="row justify-content-center align-items-center h-100">
         <div class="col-5 card">
-            <div class="card-body">
-                <p class="text-center">You are now logged out.</p>
-            </div>
+            <p class="card-body text-center">You are now logged out.</p>
         </div>
     </div>
 {% endblock container %}

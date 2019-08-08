@@ -1,0 +1,18 @@
+{% extends 'forms/base.html' %}
+{% load static %}
+
+{% block title %}You're logged in{% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'forms/css/logout.css' %}">
+{% endblock styles %}
+
+{% block container %}
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-5 card">
+            <p class="card-body text-center">
+                You're logged in. Logout <a href="{% url 'forms:logout' %}">here</a>.
+            </p>
+        </div>
+    </div>
+{% endblock container %}
