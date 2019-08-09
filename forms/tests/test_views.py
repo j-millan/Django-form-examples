@@ -1,13 +1,14 @@
 from django.test import TestCase
 from forms import models, views, forms
 from django.urls import resolve, reverse
-
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.models import User
 # Create your tests here.
 
-def SignUpTests(TestCase):
+class SignUpTests(TestCase):
     def setUp(self):
         self.url = reverse('forms:sign_up')
-        self.response = self.get(self.url)
+        self.response = self.client.get(self.url)
 
     def test_sign_up_view_status_code(self):
         self.assertEquals(self.response.status_code, 200)
@@ -18,20 +19,22 @@ def SignUpTests(TestCase):
 
     def test_sign_up_view_contains_link_to_login_page(self):
         login_url = reverse('forms:login')
-        self.assertContains(self.response, 'href="{0}"'.format())
+        self.assertContains(self.response, 'href="{0}"'.format(login_url))
 
-def LoginTests(TestCase):
-    def setUp(self):
-        self.url = reverse('forms:login')
-        self.response = self.client.get(self.url)
+    def test_contains_form(self):
+        form = self.response.context.get('form')
+        self.assertIsInstance(form, forms.SignUpForm)
 
-    def test_login_view_status_code(self):
-        return self.assertEquals(self.response.status_code, 200)
+    def test_csrf(self):
+        self.assertContains(self.response, 'csrfmiddlewaretoken')
 
-    def test_login_url_resolves_login_view(self):
-        view = resolve(self.url)
-        self.assertEquals(view.func, views.login)
+    def test_new_user_valid_post_data(self):
+        data  = {
+            'username' : 'j-millan',
+            'email' : 'test@case.com',
+            'password1' : 'peacesign',
+            'password2' : 'peacesign'
+        }
 
-    def test_login_view_contains_link_to_sign_up_page(self):
-        sign_up_url = reverse('forms:sign_up')
-        self.assertContains(self.response, 'href="{0}"'.format(sign_up_url))
+        self.client.post(self.url, data)
+        self.assertTrue(User.objects.exists())
