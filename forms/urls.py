@@ -11,6 +11,6 @@ urlpatterns = [
 	path('protect/', views.protector_registration, name='protect'),
 	path('mstlogout/', views.logout_request, name='logout_request'),
 	path('login/', LoginView.as_view(template_name='forms/auth/login.html'), name='login'),
-	path('logout/', LoginView.as_view(template_name='forms/auth/logout.html'), name='logout'),
+	path('logout/', LogoutView.as_view(template_name='forms/auth/logout.html'), name='logout'),
 	path('signup/', views.sign_up, name='sign_up'),
 ]
