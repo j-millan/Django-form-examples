@@ -3,7 +3,7 @@ from forms import models, views, forms
 from django.urls import resolve, reverse
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
-# Create your tests here.
+from django.contrib import auth
 
 class SignUpTests(TestCase):
     def setUp(self):
@@ -38,3 +38,35 @@ class SignUpTests(TestCase):
 
         self.client.post(self.url, data)
         self.assertTrue(User.objects.exists())
+        self.assertEquals(int(self.client.session['_auth_user_id']), 1)
+
+class LoginTests(TestCase):
+    def setUp(self):
+        self.url = reverse('forms:login')
+        self.response = self.client.get(self.url)
+        User.objects.create_user(username='shira', email='meme@gmail.com', password='ilovecats')
+
+    def test_csrf(self):
+        self.assertContains(self.response, 'csrfmiddlewaretoken')
+
+    def test_view_contains_link_to_sign_up_page(self):
+        sign_up_url = reverse('forms:sign_up')
+        self.assertContains(self.response, 'href="{0}"'.format(sign_up_url))
+
+    def test_login_form_valid_data(self):
+        data = {
+            'username' : 'shira',
+            'password' : 'ilovecats'
+        }
+
+        self.client.post(self.url, data)
+        self.assertEquals(int(self.client.session['_auth_user_id']), 1)
+
+    def test_login_form_invalid_password(self):
+        data = {
+            'name' : 'shira',
+            'password' : 'ilovecats21'
+        }
+
+        self.client.post(self.url, data)
+        self.assertFalse(auth.get_user(self.client).is_authenticated)
