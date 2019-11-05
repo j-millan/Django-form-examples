@@ -1,6 +1,6 @@
 ### Django form examples
 
- Some form cases i created using django 2.2 and bootstrap 4.
+ Some form cases I created using django 2.2 and bootstrap 4.
 
  They're all functional (though the login form still has some validation problems), but i aim mainly for the styles.
 
