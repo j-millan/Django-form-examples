@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import CarForm, JobApplicationForm, SignUpForm, ProtectorForm
+from .models import Protector
 
 def user_home(request):
 	return render(request, 'forms/auth/logout_request.html')
@@ -61,4 +62,4 @@ def protector_registration(request):
 	else:
 		form = ProtectorForm()
 
-	return render(request, 'forms/protector_registration.html', {'form' : form})
+	return render(request, 'forms/protector_registration.html', {'form' : form, 'protectors' : Protector.objects.all})

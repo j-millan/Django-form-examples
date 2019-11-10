@@ -5,6 +5,25 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
 from django.contrib import auth
 
+class JobApplicationTests(TestCase):
+    def setUp(self):
+        self.url = reverse('forms:job_app')
+        self.response = self.client.get(self.url)
+
+    def test_job_app_view_status_code(self):
+        self.assertEquals(self.response.status_code, 200)
+
+    def test_job_url_resolves_job_app_view(self):
+        view = resolve(self.url)
+        self.assertEquals(view.func, views.job_application)
+
+    def test_contains_form(self):
+        form = self.response.context.get('form')
+        self.assertIsInstance(form, forms.JobApplicationForm)
+
+    def test_csrf(self):
+        self.assertContains(self.response, 'csrfmiddlewaretoken')
+
 class SignUpTests(TestCase):
     def setUp(self):
         self.url = reverse('forms:sign_up')
@@ -53,7 +72,7 @@ class LoginTests(TestCase):
         sign_up_url = reverse('forms:sign_up')
         self.assertContains(self.response, 'href="{0}"'.format(sign_up_url))
 
-    def test_login_form_valid_data(self):
+    def test_login_form_valid_post_data(self):
         data = {
             'username' : 'shira',
             'password' : 'ilovecats'

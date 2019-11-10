@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'forms/base.html' %}
+{% load static widget_tweaks %}
+
+{% block title %}Protect{% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'forms/css/protector.css' %}">
+    <link rel="stylesheet" href="{% static 'css/input_icon.css' %}">
+{% endblock %}
+
+{% block container %}
+    <div class="row justify-content-around align-items-center h-100">
+        <div class="col-8 h-100" id="message">
+            <div id="box">
+                <h5><span>R </span>AN OUT OF IDEAS</h5>
+                <hr>
+                <p>
+                    so tried to copy
+                    <a href="http://rainforest.arkivert.no/#kart">this form</a>.
+                </p>
+            </div>
+            <div id="count">
+                <p>
+                    <span>{{ protectors|length }}/100</span>
+                    <br>
+                    PROTECTORS SO FAR
+                </p>
+            </div>
+        </div>
+        <div class="col-4 h-100" id="form">
+            <div class="header">
+                <h1>BECOME A PROTECTOR</h1>
+                <p>AUGUST 15TH, 2019</p>
+            </div>
+            <hr>
+            <div class="form-container">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.name.label_tag }}
+                        {% render_field form.name class="form-control" %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.last_name.label_tag }}
+                        {% render_field form.last_name class="form-control" %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.phone_number.label_tag }}
+                        {% render_field form.phone_number class="form-control" %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email.label_tag }}
+                        {% render_field form.email class="form-control" %}
+                    </div>
+                    <div class="row justify-content-center">
+                        <button type="submit" class="btn btn-secondary col-10 mx-auto">REGISTER</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock container%}
